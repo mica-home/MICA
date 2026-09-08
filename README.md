@@ -2,8 +2,6 @@
 
 MICA is a Multi-Instrument Control and Automation program initially created for physicists performing nanoelectronics measurements.
 
-MICA originated from a LabVIEW program that has been extensively used in the Condensed Matter Physics Group at the University of Manchester. The creator of MICA, a former PhD student in the group, received a copy of the LabVIEW program. After more than 5 years of use and numerous modifications, the program was almost completely rewritten to create MICA.
-
 ## Design of MICA
 
 MICA features an easy-to-use GUI, and this repository was primarily created to share MICA and assist new students who want to automate their experiments without the need for advanced coding skills.
@@ -20,7 +18,7 @@ If you are trying MICA for the first time, you can download the latest version i
 
 ### Update MICA
 
-If you already have MICA installed, you can check for announcements and new releases within the MICA program (work in progress).
+If you already have MICA installed, you can check for new releases within the MICA program via Help → Check for Updates.
 
 ## Cite MICA
 
@@ -38,17 +36,19 @@ To conduct an experiment using MICA, you need to know what to measure (Channel C
 
 Channel Configuration is a JSON text file that defines several channels, which represent the instrument parameters that MICA can change (input) and read (output). Each channel contains detailed information about the instrument hardware, such as address, instrument model, parameter type, etc.
 
-Fortunately, MICA provides an Editor GUI that allows you to configure the channels. Additionally, example configuration files that have been used in various research groups are included.
+MICA provides an Editor GUI that allows you to configure the channels. Additionally, example configuration files that have been used in various research groups are included.
 
 ### Measure Mode
 
-Measure Mode defines how you want to change the input channels. MICA reads the output channels after each input change. MICA currently supports three measure modes: Manual, Sweep, and Map.
+Measure Mode defines how you want to change the input channels. MICA reads the output channels after each input change. MICA currently supports four core measure modes: Sweep, Log, Map, and D-Y Map.
 
-In Manual mode, MICA periodically reads the output channels, even if none of the input channels have changed. Changes to the input take effect immediately.
+In Log mode, MICA periodically reads the output channels, even if none of the input channels have changed. Changes to the input take effect immediately.
 
 In Sweep mode, you can linearly change the value of an input channel step-by-step. At each step, MICA reads the current sweep-step value and the output channels, and then changes the input value to the next step value. Circular sweep is also supported.
 
 Map Mode is a 2D Sweep, where you can linearly change the values of two input channels. These two channels are known as the fast-sweep axis and slow-sweep axis. In each slow-sweep step, the slow-sweep axis value remains fixed while the fast-sweep axis undergoes a full sweep. Afterward, the slow-sweep axis moves to the next step value.
+
+D-Y Map Mode extends 2D scanning with two control axes (D and Y) together with channel-mapping and scaling parameters, which is useful for comparing device responses across combinations of two experimental variables.
 
 ### Supported Instruments
 
@@ -64,18 +64,23 @@ Map Mode is a 2D Sweep, where you can linearly change the values of two input ch
 - Stanford Research Systems
     - [SR830 Lock-in Amplifier](https://www.thinksrs.com/products/sr830.html)
     - [SR865A Lock-in Amplifier](https://thinksrs.com/products/sr865a.html)
-- Lakeshore
+- Lake Shore
     - [LS336 Temperature controller](https://www.lakeshore.com/products/categories/overview/temperature-products/cryogenic-temperature-controllers/model-336-cryogenic-temperature-controller)
+    - [M81 Synchronous Source Measure System](https://www.lakeshore.com/products/categories/specification/material-characterization-products/measureready-m81-synchronous-source-measure-system/measureready-m81-synchronous-source-measure-system)
+    - [155 AC/DC current and voltage source](https://www.lakeshore.com/products/categories/overview/material-characterization-products/measureready-instruments/precision-low-noise-dc-and-ac-dc-current-voltage-source---measureready-155)
 - Quantum Design
     - [Dynacool PPMS](https://www.qdusa.com/products/dynacool.html)
 - [Oxford TeslatronPT](https://nanoscience.oxinst.com/dry-systems/products/teslatronpt)
     - [Mercury iTC Temperature Controller](https://nanoscience.oxinst.com/accessories/mercuryitc)
     - [Mercury iTC-HelioxVT](https://nanoscience.oxinst.com/products/helioxvt)
     - [Mercury iPS Magnet Power Supply](https://nanoscience.oxinst.com/accessories/mercuryips)
+- [Multifields (多场科技) ColdTUBE](https://www.multifields.com/anm/)
+    - [Kelvinion Temperature Controller](https://www.multifields.com/anm/kelvinion/)
+    - ZN 4Q Magnet Power Controller
 - Ophir Laser Measurement
     - [NOVA II Laser Power Meter](https://www.ophiropt.com/en/f/nova-2-power-meter)
 - Zolix (卓立汉光)
-    - OminiL Spec SDK (Monochrometre Wavelength/Grating and Shutter)
+    - OminiL Spec SDK (Monochromator Wavelength/Grating and Shutter)
 
 ## What can't MICA do?
 
@@ -93,7 +98,7 @@ Before using MICA, you should ensure that the instrument connections are correct
 
 ### MICA does not fully support all the Supported Instruments
 
-MICA is a work in progress and currently supports only some common functionalities required by the initial research groups that use MICA.
+MICA is a work in progress and currently supports only some common functionalities required by research groups that use MICA. Features could be added per request.
 
 ### Anything else not covered here
 
@@ -106,7 +111,8 @@ If you encounter a bug or need a new feature, please create an issue.
 ### Try with Keithley 2600 series
 
 ### More Details
-For more detailed information, please read the full user manual [here]().
+
+For more detailed information, please read the full user manual attached to each release on the [release page](https://github.com/mica-home/MICA/releases).
 
 ## In the End
 
